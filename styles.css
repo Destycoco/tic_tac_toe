@@ -1,14 +1,15 @@
 *::before, *::after, *{
 	box-sizing: border-box;
-}
-body{
 	margin: 0;
 	padding: 0;
+}
+body{
+	
 	
 }
 :root{
 	font-size: 62.5%;
-	--cell-size: 150px;
+	--cell-size: 15rem;
 	--mark-size: calc(var(var(--cell-size)* .8))
 }
 .main{
@@ -19,6 +20,7 @@ body{
 }
 .header{
 	text-align: center;
+	margin: 1.5% auto;8
 }
 .header h1{
 	color: hsl(238, 87%, 67%);
@@ -89,8 +91,8 @@ body{
 }
 
 
-.board.circle .cell:not(.x):not(.o):hover::before,
-.board.circle .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after,
 .cell.o::before,
 .cell.o::after{
 	content: "";
@@ -100,12 +102,47 @@ body{
 	position: absolute;
 	border-radius: 50%;
 }
-.board.circle .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::after,
 .board .cell.o::after{
 	width: calc(var(--cell-size)* .6);
 	height: calc(var(--cell-size)* .6);
 	background-color: #fff;
 }
-.main .board.circle .cell:not(.x):not(.o):hover::before{
+.main .board.o .cell:not(.x):not(.o):hover::before{
 	background-color: hsl(238, 87%, 95%);
+}
+.winning-result{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgb(88, 93, 243, 0.9);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.winning-result .winner{
+	font-size: 10rem;
+	color: hsl(238, 87%, 95%);
+	font-weight: 700;
+}
+.winning-result button{
+	width: 10%;
+	height: 5%;
+	font-size: 4rem;
+	color:hsl(238, 87%, 67%);
+	border-radius: 2rem;
+	font-weight: 500;
+	cursor: pointer;
+}
+.winning-result button:hover{
+	background-color: hsl(238, 87%, 67%);
+	color: #fff;
+	border: 4px solid #fff;
+	outline: none;
+}
+.winning-result.show{
+	display: flex;
 }
