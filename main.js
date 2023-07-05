@@ -1,60 +1,84 @@
-const board = document.querySelector(".board");
-const cellElement = document.querySelectorAll("[data-cell]")
-const X_class = "x";
-const O_class = "o";
+const cellElements = document.querySelectorAll("[data-cell]");
+const cellBoard = document.querySelector(".board");
+const winningSection = document.getElementById("winning-section");
+const winnerMessage = document.querySelector("[data-winner-message]");
+const resetButton = document.getElementById("reset");
+const O_class = 'o';
+const X_class = 'x';
+
 const winningCombinations = [
-	[0,1,2],
-	[3,4,5],
-	[6,7,8],
-	[0,3,6],
-	[1,4,7],
-	[2,5,8],
-	[2,4,6],
-	[0,4,8]
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[2, 4, 6],
+	[0, 4, 8]
 ]
+const drawArray = [0,1,2,3,4,5,6,7,8];
 let circleTurn;
-
-cellElement.forEach((cell)=>{
-	cell.addEventListener("click", handleClick, {once: true});
-})
-
-function handleClick(e){
-	const cell = e.target
-	const currentTurn = circleTurn ? O_class : X_class;
-	
-	placeMarker(cell, currentTurn);
-	swapturn(); 
-	setBoardHover();
-
-	if (checkWin(currentTurn)){
-		console.log("winner");
-	};
-	
-		
-	}
-	
-
-function swapturn(){
-	circleTurn = !circleTurn;
-}
-function placeMarker(box, classfill){
-	box.classList.add(classfill);
-}
-function setBoardHover(){
-	board.classList.remove(O_class);
-	board.classList.remove(X_class);
-	if (circleTurn){
-		board.classList.add(O_class)
-	} else {
-		board.classList.add(X_class);
-	}
-}
-
-function checkWin(currentTurn){
-	return winningCombinations.some((combination)=>{
-		return combination.every((index)=>{
-			return cellElement[index].classList.contains(currentTurn);
-		})
+startGame();
+function startGame(){
+	// circleTurn= false;
+	cellElements.forEach((cell)=>{
+		cell.addEventListener("click", handleClick, {once: true});
+		setHoverEffect();
 	})
 }
 
+	function handleClick(e) {
+		const cell = e.target;
+		const currentTurn = circleTurn ? O_class : X_class;
+		placeMark(cell, currentTurn);
+		swapTurn();
+		setHoverEffect();
+		if (showWinner(currentTurn)){
+			endGame(false);
+		} else if (isDraw()){
+			endGame(true);
+			// console.log("draw");
+		} 
+
+	}
+	function placeMark(cell, currentTurn) {
+		cell.classList.add(currentTurn);
+	}
+	function swapTurn(){
+		circleTurn = !circleTurn;
+	}
+	function setHoverEffect(){
+		cellBoard.classList.remove(X_class);
+		cellBoard.classList.remove(O_class);
+		if (circleTurn){
+			cellBoard.classList.add(O_class);
+		} else {
+			cellBoard.classList.add(X_class);
+		}
+	}
+	function showWinner(currentTurn){
+		return winningCombinations.some((combinations)=>{
+			return combinations.every((index)=>{
+				return cellElements[index].classList.contains(currentTurn);
+			})
+		})
+	}
+	function endGame(draw){
+		if (draw){
+			winnerMessage.innerText = `Draw`
+		} else {
+			winnerMessage.innerText = `${circleTurn ? "X's" : "O's"} Wins!!!`
+		}
+		winningSection.classList.add("show");
+		}
+	function isDraw(){
+		 return drawArray.every((index)=>{
+			return cellElements[index].classList.contains(X_class) ||
+			cellElements[index].classList.contains(O_class);
+		 })
+	}
+		
+		
+		
+	
+	
