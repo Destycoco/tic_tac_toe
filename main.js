@@ -20,9 +20,14 @@ const drawArray = [0,1,2,3,4,5,6,7,8];
 let circleTurn;
 startGame();
 function startGame(){
-	// circleTurn= false;
+	circleTurn = false;
 	cellElements.forEach((cell)=>{
 		cell.addEventListener("click", handleClick, {once: true});
+		// cell.removeEventListener("click", handleClick);
+		cell.classList.remove(X_class);
+		cell.classList.remove(O_class);
+		winningSection.classList.remove("show");
+
 		setHoverEffect();
 	})
 }
@@ -31,14 +36,17 @@ function startGame(){
 		const cell = e.target;
 		const currentTurn = circleTurn ? O_class : X_class;
 		placeMark(cell, currentTurn);
-		swapTurn();
-		setHoverEffect();
+		
 		if (showWinner(currentTurn)){
 			endGame(false);
 		} else if (isDraw()){
 			endGame(true);
 			// console.log("draw");
-		} 
+		} else{
+			swapTurn();
+			setHoverEffect();
+		}
+		resetGame();
 
 	}
 	function placeMark(cell, currentTurn) {
@@ -67,7 +75,7 @@ function startGame(){
 		if (draw){
 			winnerMessage.innerText = `Draw`
 		} else {
-			winnerMessage.innerText = `${circleTurn ? "X's" : "O's"} Wins!!!`
+			winnerMessage.innerText = `${circleTurn ? "O's" : "X's"} Wins!!!`
 		}
 		winningSection.classList.add("show");
 		}
@@ -76,6 +84,10 @@ function startGame(){
 			return cellElements[index].classList.contains(X_class) ||
 			cellElements[index].classList.contains(O_class);
 		 })
+	}
+	function resetGame(){
+		resetButton.addEventListener("click", startGame);
+
 	}
 		
 		
