@@ -23,11 +23,9 @@ function startGame(){
 	circleTurn = false;
 	cellElements.forEach((cell)=>{
 		cell.addEventListener("click", handleClick, {once: true});
-		// cell.removeEventListener("click", handleClick);
 		cell.classList.remove(X_class);
 		cell.classList.remove(O_class);
 		winningSection.classList.remove("show");
-
 		setHoverEffect();
 	})
 }
@@ -41,7 +39,6 @@ function startGame(){
 			endGame(false);
 		} else if (isDraw()){
 			endGame(true);
-			// console.log("draw");
 		} else{
 			swapTurn();
 			setHoverEffect();

@@ -8,6 +8,7 @@ body{
 	/* margin: 2rem; */
 	padding: 0;
 	box-sizing: border-box;
+	background-color: hsl(238, 87%, 95%);
 }
 :root{
 	font-size: 62.5%;
@@ -45,7 +46,7 @@ body{
 .cell{
 	width: var(--cell-size);
 	height: var(--cell-size);
-	border: 2px solid  hsl(238, 87%, 65%);
+	border: 2.5px solid  hsl(238, 87%, 65%);
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
@@ -109,6 +110,7 @@ body{
 .board .cell.o::after{
 	width: calc(var(--cell-size)* .6);
 	height: calc(var(--cell-size)* .6);
+	/* background-color: hsl(238, 87%, 95%) */
 	background-color: #fff;
 }
 .main .board.o .cell:not(.x):not(.o):hover::before{
@@ -121,7 +123,6 @@ body{
 	bottom: 0;
 	right: 0;
 	background-color: rgb(88, 93, 243, 0.9);
-	/* background-size: cover; */
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -136,7 +137,7 @@ body{
 }
 .winning-section .reset{
 	width: 10%;
-	height: 5%;
+	height: 6%;
 	font-size: 4rem;
 	color:hsl(238, 87%, 67%);
 	border-radius: 2rem;
