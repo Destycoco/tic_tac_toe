@@ -86,7 +86,7 @@ function startGame(){
 		resetButton.addEventListener("click", startGame);
 
 	}
-		
+	
 		
 		
 	

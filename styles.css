@@ -41,7 +41,6 @@ body{
 	align-items: center;
 	align-content: center;
 	justify-content: center;
-	border: 3px solid hsl(238, 87%, 65%);
 }
 .cell{
 	width: var(--cell-size);
@@ -136,8 +135,8 @@ body{
 	font-weight: 700;
 }
 .winning-section .reset{
-	width: 10%;
-	height: 6%;
+	width: 30rem;
+	height: 9rem;
 	font-size: 4rem;
 	color:hsl(238, 87%, 67%);
 	border-radius: 2rem;
@@ -152,4 +151,19 @@ body{
 }
 .winning-section.show{
 	display: flex;
+}
+@media screen and (max-width: 900px){
+	:root{
+		font-size: 50%;
+	}
+}
+@media screen and (max-width: 600px){
+	:root{
+		font-size: 45%;
+	}
+}
+@media screen and (max-width: 400px){
+	:root{
+		font-size: 35%;
+	}
 }
